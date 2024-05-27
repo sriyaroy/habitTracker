@@ -7,18 +7,18 @@ const router = express.Router();
 
 // Need to make api endpoints for CRUD (Create, Read, Update, Delete)
 // create a new habit
-router.post(`/habits`, async (req, res) =>{
-    try{
-        const habit = new Habit(req.body);
-        await habit.save();
-        res.status(201).send(habit);
-    } catch (error) {
-        res.status(400).send(error);
-    }
+router.post(`/`, async (req, res) =>{
+    const habit = new Habit(req.body);
+    await habit.save();
+    res.status(201).send(habit);
+
+    habit.save()
+        .then(() => res.json('Habit Added!'))
+        .catch(error => res.status(400).json('Error: ' + error));
 });
 
 // Get all habits
-router.get('/habits', async(req, res) => {
+router.get('/', async(req, res) => {
     try {
         const habits = await Habit.find();
         res.status(200).send(habits);
