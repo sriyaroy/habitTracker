@@ -2,28 +2,39 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [habits, setHabits] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api/habits')
-    .then( response => response.json())
-    .then(data => setHabits(data))
-    .catch(error => console.error('Error fetching habits:', error));
-  }, []);
-
+  const [userName, setName] = useState("");
+  const [habitTitle, setHabit] = useState("");
+  const handleOnSubmit = async (e) => {
+      e.preventDefault();
+      let result = await fetch(
+      'http://localhost:8000/register', {
+          method: "post",
+          body: JSON.stringify({ name, email }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+      result = await result.json();
+      console.warn(result);
+      if (result) {
+          alert("Data saved succesfully");
+          setEmail("");
+          setName("");
+      }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className='merriweather-regular'>
-        🌳 INHABITED 🌳
-        </h1>
-        <ul>
-          {habits.map(habit => (
-            <li key={habit._id}>{habit.name}</li>
-          ))}
-        </ul>
-      </header>
-    </div>
+      <>
+          <h1>This is React WebApp </h1>
+          <form action="">
+              <input type="text" placeholder="name"
+              value={userName} onChange={(e) => setName(e.target.value)} />
+              <input type="email" placeholder="email"
+              value={habitTitle} onChange={(e) => setHabit(e.target.value)} />
+              <button type="submit"
+              onClick={handleOnSubmit}>submit</button>
+          </form>
+
+      </>
   );
 }
 
