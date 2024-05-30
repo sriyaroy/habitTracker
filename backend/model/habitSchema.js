@@ -1,21 +1,13 @@
 import mongoose from "mongoose";
 
 const habitSchema = new mongoose.Schema({
-    userName: String,
-    default: mongoose.Types.ObjectId,
-    habits: [
-        {
-            habitTitle: String,
-            default: mongoose.Types.ObjectId,
-            frequency: String,
-            targetPerYear: Number,
-            dateCreated: {type: Date, default: Date.now},
-            achievedPerYear: Number,
-            datesAchieved: {type: Array, default: Date}
-        }
-    ]
-});
+    habitName: {type: String, required: true},
+    frequency: {type: String, required: true},
+    targetPerYear: {type: Number, required: true},
+    achievedPerYear: {type: Number, required: true},
+    datesAchieved: {type: Array, default: Date, required: true}
+}, {timestamps: true });
 
-const Habit = mongoose.model('habits', habitSchema);
+const Habit = mongoose.model('Habit', habitSchema);
 Habit.createIndexes();
 export default Habit;

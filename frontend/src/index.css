@@ -7,7 +7,87 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+header a {
+  color: #333;
+  text-decoration: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App-header {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #e7aa99;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 4px solid #81b29a;
+}
+
+.App-header h1 {
+  font-size: 3em;
+  margin: 0;
+  color: #f4f1de;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.App-header p {
+  font-size: 1.2em;
+  color: #f4f1de;
+}
+
+.container {
+  width: 80%;
+  margin: 30px auto;
+}
+
+.section {
+  background-color: #81b29a;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 2px solid #f2cc8f;
+  border-radius: 10px;
+}
+
+.section h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #3d405b;
+}
+
+.habits-list {
+  list-style: none;
+  padding: 0;
+}
+
+.habits-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f2cc8f;
+}
+
+.habits-list li:last-child {
+  border-bottom: none;
+}
+
+.habits-list input {
+  margin-right: 10px;
+}
+
+.emoji {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings label {
+  margin: 10px 0;
 }

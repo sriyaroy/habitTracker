@@ -19,28 +19,20 @@ app.use((req, res, next) => {
   next()
 });
 
-// root URL
-app.get('/api/habits', async (req, res) => {
-  //res.send('Welcome to your habit tracker!!');
-  const habitData = await habitModel.find();
-  res.json(habitData);
-});
-
+// Use routes
+app.use('/api/habits', habitRoutes);
 
 // Connect to MongoDB
 const MONGOURL = process.env.MONGODB_URI;
-
 mongoose.connect(MONGOURL).then(() => {
-    useNewUrlParser: true,
-    console.log('Connected to MongoDB');
+  // listen for requests
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+  console.log('Connected to MongoDB');
   }).catch((error) => {
     console.error('Error connecting to MongoDB:', error.message);
   });
 
 
-// Use routes
-app.use(habitRoutes);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
